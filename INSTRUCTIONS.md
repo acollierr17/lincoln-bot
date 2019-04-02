@@ -19,16 +19,16 @@ Here are some resources that I have mentioned in the video as well as linked in 
 ## Opening A Pull Request
 When you have made your changes in the `commands/config.js` file, you will have to open a pull request in this repository. Follow the rundown below. Refer to the links about pull requests above. Here is a basic rundown:
 
-- Refer to steps 1 & 2 in the **Usage Instructions** section
+- Refer to steps 1 & 2 in the [Usage Instructions](#usage-instructions) section
 - Create a new branch called `patch-1` or `config-1` by doing `git branch -b <branch-name>`
-- Follow steps 3 - 5 in **Usage Instructions**
+- Follow steps 3 - 5 in the [Usage Instructions](#usage-instructions) section
 - Make your changes in the `commands/config.js` file
 - Commit your changes to your forked repository and open a pull request (make sure `acollierr17/lincoln-bot:master` is the base branch and `<your-username>/lincoln-bot:<your-new-branch>` is your branch you committed)
 - Fill out the pull request information
 - Wait for a response and check out other pull requests and comment while you're at it
 
 ## Linting
-Before you make a pull request, you will need to lint your code. If you don't, Travis CI will error out with the pull request.
+Before you make a pull request, you will need to lint your code. If you don't, Travis CI will display the error in the build log.
 
 - Run `npm run test` to test your code and to see if there are any issues displayed in console
 - If there are any issues, run `npm run lint` to fix the linting errors
