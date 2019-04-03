@@ -1,4 +1,4 @@
-# Code Challenge Instructions - Win Discord Nitro1
+# Code Challenge Instructions - Win Discord Nitro
 
 Hey, all! Here are the instructions and rules regarding this code challenge! If you have no idea what this challenge is about, please refer to [this video](https://youtu.be/0KzGNS0e788) on the channel.
 
