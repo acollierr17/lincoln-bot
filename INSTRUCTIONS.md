@@ -1,6 +1,6 @@
 # Code Challenge Instructions - Win Discord Nitro1
 
-Hey, all! Here are the instructions and rules regarding this code challenge! If you have no idea what this challenge is about, please refer to [this video]() on the channel.
+Hey, all! Here are the instructions and rules regarding this code challenge! If you have no idea what this challenge is about, please refer to [this video](https://youtu.be/0KzGNS0e788) on the channel.
 
 ## Rules
 1) You must use a linter that abides by the `.eslintrc` file in this repository as a base. Read the [Linting](#linting) section for more information. Check out this video for more information on linting
