@@ -2,6 +2,12 @@
 
 Hey, all! Here are the instructions and rules regarding this code challenge! If you have no idea what this challenge is about, please refer to [this video]() on the channel.
 
+## Rules
+1) You must use a linter that abides by the `.eslintrc` file in this repository as a base. Read the [Linting](#linting) section for more information. Check out this video for more information on linting
+2) You're expected to have followed the standards that have been shown throughout [the series](https://thenerdcave.us/discordjs) and in general good JavaScript and Node.js practice. There's plenty of really good information online (for example, the descriptions of my videos). You just have to be resourceful!
+3) When reviewing other pull requests and commenting on code, please be fair and provide constructive criticism. Any sort of disrespect or trying to bring another person down is not tolerated
+4) With Rule 3 in mind, you are to be open for contructive critism from myself and other commenters on your pull request. We all grow by helping each and being willing to listen
+
 ## Resources
 Here are some resources that I have mentioned in the video as well as linked in the video's description. Make sure to check these out if you're are familiar with Git and GitHub!
 

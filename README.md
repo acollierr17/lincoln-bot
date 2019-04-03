@@ -1,5 +1,5 @@
-# discord.js-series
-Follow along with my Discord.js Bot Development series on YouTube!
+# lincoln-bot
+This is the Lincoln Bot from my Discord.js Development series.
 
 YouTube Playlist: https://www.youtube.com/playlist?list=PLeLrvnqwEnOasx86ozE-cdf1JagGcUlRf
 
