@@ -21,19 +21,6 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'welcomeChannel': {
-            /**
-             * Channel validation. Check if the mentioned channel is a guild.
-             * Want a hint?
-             * ```js
-             * let channel = message.guild.channels.find(c => c.name === updated);
-             *
-             * // example of Collection#find (look below)
-             * collection.find(val => val.username === 'Anthony');
-             * ```
-             * Remember when I talked about collections earlier in the video!
-             * https://discord.js.org/#/docs/main/stable/class/Collection?scrollTo=find
-             * https://anidiots.guide/understanding/collections
-             */
             if (updated) {
                 try {
                     let channel = message.guild.channels.find(c => c.name === updated) || message.mentions.channels.first();
@@ -54,20 +41,6 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'welcomeMsg': {
-            /**
-             * Make sure the user specifically defines the {{user}} and {{guild}} parameters.
-             * Want a hint?
-             * ```js
-             * let foo = '{{bar}}';
-             * let message = 'Hello, {bar}';
-             *
-             * if (foo.test(message)) {
-             *  console.log('Wooo');
-             * } else {
-             *  console.log('No...');
-             * }
-             * ```
-             */
             if (updated) {
                 try {
                     if (updated.match(/^.*?{{user}}.*?{{guild}}.*$/g)) {
@@ -86,9 +59,6 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'modRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
             if (updated) {
                 try {
                     let role = message.guild.roles.find(r => r.name === updated) || message.mentions.roles.first();
@@ -109,9 +79,6 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'adminRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
             if (updated) {
                 try {
                     let role = message.guild.roles.find(r => r.name === updated) || message.mentions.roles.first();
@@ -132,15 +99,9 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         default: {
-            /**
-             * Want to go further? Use object destructuring to get the different properties from the MongoDB document
-             * and display them in the message below!
-             *
-             * Object desctructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-             */
-            let { welcomeChannel, welcomeMsg, modRole, adminRole } = settings;
+            let { prefix, welcomeChannel, welcomeMsg, modRole, adminRole } = settings;
 
-            message.channel.send(`**Default settings:**\n\nWelcome channel: ${welcomeChannel ? `<#${welcomeChannel}>` : 'None'}\nWelcome message: \`${welcomeMsg || 'None'}\`\nMod role: \`${modRole ? `${message.guild.roles.get(modRole).name}` : 'None'}\`\nAdmin role: \`${adminRole ? `${message.guild.roles.get(adminRole).name}` : 'None'}\``);
+            message.channel.send(`**Default settings:**\n\nPrefix: ${prefix ? prefix : client.config.prefix}\nWelcome channel: ${welcomeChannel ? `<#${welcomeChannel}>` : 'None'}\nWelcome message: \`${welcomeMsg || 'None'}\`\nMod role: \`${modRole ? `${message.guild.roles.get(modRole).name}` : 'None'}\`\nAdmin role: \`${adminRole ? `${message.guild.roles.get(adminRole).name}` : 'None'}\``);
             break;
         }
     }
