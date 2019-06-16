@@ -102,7 +102,7 @@ exports.run = async (client, message, args, settings) => {
                     break;
                 }
             }
-            message.channel.send(`Current Mod Role ${settings.adminRole}`);
+            message.channel.send(`Current Admin Role ${settings.adminRole}`);
             break;
         }
         default: {
