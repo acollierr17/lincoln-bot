@@ -21,63 +21,90 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'welcomeChannel': {
-            /**
-             * Channel validation. Check if the mentioned channel is a guild.
-             * Want a hint? 
-             * ```js
-             * let channel = message.guild.channels.find(c => c.name === updated);
-             * 
-             * // example of Collection#find (look below)
-             * collection.find(val => val.username === 'Anthony');
-             * ```
-             * Remember when I talked about collections earlier in the video!
-             * https://discord.js.org/#/docs/main/stable/class/Collection?scrollTo=find
-             * https://anidiots.guide/understanding/collections
-             */
+             if (updated) {
+               try {
+                const channel = message.guild.channels.find(c => c.name === updated) || message.mentions.channels.first();
+                if (!channel) return message.reply('could not find channel');
 
+                await client.updateGuild(message.guild, { welcomeChannel: channel.id });
+                return message.channel.send(`Updated channel to: ${channel}`);
+               } catch (e) {
+                   console.log(e);
+                   message.channel.send(`An error occurred: **${e.message}**`);
+               }
+             }
+                message.reply(`Usage: ${client.config.prefix}config welcomeChannel #<Channel> or the name of the channel`);
+             
             break;
         }
         case 'welcomeMsg': {
-            /**
-             * Make sure the user specifically defines the {{user}} and {{guild}} parameters.
-             * Want a hint?
-             * ```js
-             * let foo = '{{bar}}';
-             * let message = 'Hello, {bar}';
-             * 
-             * if (foo.test(message)) {
-             *  console.log('Wooo');
-             * } else {
-             *  console.log('No...');
-             * }
-             * ```
-             */
+            if (updated) {
+                try {
+                    if (!updated.includes('{{user}}' && '{{guild}}')) {
+                        return message.reply('Welcome message must include {{user}} and {{guild}}');
+                    }
+
+                    await client.updateGuild(message.guild, { welcomeMsg: updated });
+                    return message.channel.send(`Updated message to: **${updated}**`);
+                } catch (e) {
+                    console.log(e);
+                    message.channel.send(`An error occurred: **${e.message}**`);
+                }
+            }
+                message.reply(`Usage: ${client.config.prefix}config welcomeMsg <message> {{user}} specify the user that join and {{guild}} specify the guild and must be included`);
 
             break;
         }
         case 'modRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
+            if (updated) {
+                try {
+                    const role = message.guild.roles.find(r => r.name === updated) || message.mentions.roles.first();
+                    if (!role) return message.reply('could not find role');
+
+                    await client.updateGuild(message.guild, { modRole: role.id });
+                    return message.channel.send(`Updated role to: ${role}`);
+                } catch (e) {
+                    console.log(e);
+                    message.channel.send(`An error occurred: **${e.message}**`);
+                }
+            }
+            message.reply(`Usage: ${client.config.prefix}config modRole @<role> or the name of the role`);
 
             break;
         }
         case 'adminRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
+            if (updated) {
+                try {
+                    const role = message.guild.roles.find(r => r.name === updated) || message.mentions.roles.first();
+                    if (!role) return message.reply('could not find role');
+
+                    await client.updateGuild(message.guild, { adminRole: role.id });
+                    return message.channel.send(`Updated role to: ${role}`);
+                } catch (e) {
+                    console.log(e);
+                    message.channel.send(`An error occurred: **${e.message}**`);
+                }
+            }
+            message.reply(`Usage: ${client.config.prefix}config adminRole @<role> or the name of the role`);
             
             break;
         }
         default: {
-            /**
-             * Want to go further? Use object destructuring to get the different properties from the MongoDB document
-             * and display them in the message below!
-             * 
-             * Object desctructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-             */
+            const skip = ['_id', 'guildID', 'guildName', 'ownerID', 'ownerUsername', '__v'];
+            const values = [];
 
-            message.channel.send(`Default settings: PLACEHOLDER`);
+            Object.entries(settings._doc)
+            .filter(f => {
+                if (!skip.some(v => f.includes(v))) {
+                    const name = f[0].toString();
+                    const value = f[1].toString();
+
+                    values.push(`${name} : ${value}`);
+                    return values;
+                }
+            });
+            message.channel.send(`Settings List With current Settings \n\n${values.map(m => `${m}${''.repeat(m.length)}`).join('\n')}`, {code: 'asciidoc'});
+
             break;
         }
     }
